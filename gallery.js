@@ -35,18 +35,19 @@ function onImageClick(event) {
     lightBox.classList.add('is-open');
     lightBoxImage.src = event.target.dataset.source;
     lightBoxImage.alt = event.target.alt;
+    document.addEventListener('keydown', onEscPress);
 }
 
 const closeModalBtn = document.querySelector('[data-action="close-lightbox"]');
 const overlay = document.querySelector('.lightbox__overlay');
-const onEscBtnClick = document.querySelector('.lightbox__content');
 
 closeModalBtn.addEventListener('click', onCloseModal);
 overlay.addEventListener('click', onOverlayClick);
-document.addEventListener('keydown', onEscPress);
 
 function onCloseModal() { 
     lightBox.classList.remove('is-open');
+    document.removeEventListener('keydown', onEscPress);
+    lightBoxImage.src = '';
 }
 
 function onOverlayClick(event) { 
@@ -57,6 +58,6 @@ function onOverlayClick(event) {
 
 function onEscPress(btn) { 
     if (btn.code === 'Escape') { 
-        lightBox.classList.remove('is-open')
+        onCloseModal();
     }
 }
