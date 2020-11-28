@@ -48,6 +48,7 @@ function onCloseModal() {
     lightBox.classList.remove('is-open');
     document.removeEventListener('keydown', onEscPress);
     lightBoxImage.src = '';
+    lightBoxImage.alt = '';
 }
 
 function onOverlayClick(event) { 
